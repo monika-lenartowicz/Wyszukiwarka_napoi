@@ -1,15 +1,27 @@
 const searchInput = document.querySelector(".search");
 const drinksList = document.querySelectorAll("li");
 
-const searchValue = e => {
-	const text = e.target.value.toLowerCase();
+// const searchValue = e => {
+// 	const text = e.target.value.toLowerCase();
 
-	drinksList.forEach(element => {
-		const task = element.textContent;
-		if (task.toLowerCase().indexOf(text) !== -1) {
-			element.style.display = "block";
+// 	drinksList.forEach(element => {
+// 		const task = element.textContent;
+// 		if (task.toLowerCase().indexOf(text) !== -1) {
+// 			element.style.display = "block";
+// 		} else {
+// 			element.style.display = "none";
+// 		}
+// 	});
+// };
+
+const searchValue = () => {
+	drinksList.forEach(drink => {
+		const match = new RegExp(searchInput.value, "i").test(drink.textContent);
+
+		if (!match) {
+			drink.style.display = "none";
 		} else {
-			element.style.display = "none";
+			drink.style.display = "block";
 		}
 	});
 };
